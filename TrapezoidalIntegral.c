@@ -1,6 +1,6 @@
 /*
 Find the following integration using Trapezoidal rule in 8 sub-intervals.
-Find absolute and maximum errors also.
+Find absolute and maximum errors also, upto 6 decimal places.
 
 I = integral dx/(1 + x), from a to b
 */
@@ -13,11 +13,12 @@ double f(double x) {
 }
 
 int main(void) {
-    int n = 8; /* Number of sub-intervals */
+    //Number of sub-intervals
+    int n = 8;
     double a, b;
     double h, sum = 0.0;
-    double trapezoidal_value, exact_value, absolute_error;
-    double m2, max_error_bound;
+    double trapVal, exact, absError;
+    double m2, maxErr;
 
     printf("Enter lower limit a and upper limit b: ");
     scanf("%lf %lf", &a, &b);
@@ -34,22 +35,22 @@ int main(void) {
         sum += f(xi);
     }
 
-    trapezoidal_value = (h / 2.0) * (f(a) + f(b) + 2.0 * sum);
+    trapVal = (h / 2.0) * (f(a) + f(b) + 2.0 * sum);
 
     /* Exact integral of 1/(1+x) is ln(1+x) */
-    exact_value = log(1.0 + b) - log(1.0 + a);
-    absolute_error = fabs(exact_value - trapezoidal_value);
+    exact = log(1.0 + b) - log(1.0 + a);
+    absError = fabs(exact - trapVal);
 
     /* f''(x) = 2/(1+x)^3; max on [a,b] occurs at smaller endpoint */
     double min_x = (a < b) ? a : b;
     m2 = 2.0 / pow(1.0 + min_x, 3.0);
-    max_error_bound = ((b - a) / 12.0) * pow(h, 2.0) * m2;
+    maxErr = ((b - a) / 12.0) * pow(h, 2.0) * m2;
 
     printf("\nUsing Trapezoidal Rule with n = %d\n", n);
-    printf("Approximate integral  = %.6lf\n", trapezoidal_value);
-    printf("Exact integral        = %.6lf\n", exact_value);
-    printf("Absolute error        = %.6lf\n", absolute_error);
-    printf("Maximum error bound   = %.6lf\n", fabs(max_error_bound));
+    printf("Approximate integral  = %.6lf\n", trapVal);
+    printf("Exact integral        = %.6lf\n", exact);
+    printf("Absolute error        = %.6lf\n", absError);
+    printf("Maximum error bound   = %.6lf\n", fabs(maxErr));
 
     return 0;
 }

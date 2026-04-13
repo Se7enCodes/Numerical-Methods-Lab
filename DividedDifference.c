@@ -26,7 +26,7 @@ int main() {
     }
     
     // Print table
-    printf("\nDivided Difference Table:\n");
+    printf("\nDivided Difference Table:\n\n");
     for (int i = 0; i < n; i++) {
         printf("%.3f", x[i]);
         for (int j = 0; j < n - i; j++) {

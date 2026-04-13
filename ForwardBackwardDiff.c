@@ -42,7 +42,7 @@ int main() {
     }
     
     int choice;
-    printf("\nKonsa karana hai sir???\n");
+    printf("\nWhich one?\n");
     printf("1. Forward Difference\n");
     printf("2. Backward Difference\n");
     printf("Enter your choice (1 or 2): ");
