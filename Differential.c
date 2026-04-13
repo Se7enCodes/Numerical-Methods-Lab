@@ -11,18 +11,18 @@ double f(double x, double y) {
 }
 
 int main(void) {
-    double x = 0.2, y = 2.0, h = 0.2, x_target = 1.0;
+    double x = 0.2, y = 2.0, h = 0.2, x_tgt = 1.0;
     
     printf("Euler's Basic Method\n");
     printf("x\t\ty\n");
-    printf("%.1f\t\t%.4f\n", x, y);
-    
-    while (x < x_target) {
+    printf("%.3f\t\t%.3f\n", x, y);
+
+    while (x < x_tgt) {
         y = y + h * f(x, y);
         x = x + h;
-        printf("%.1f\t\t%.4f\n", x, y);
+        printf("%.3f\t\t%.3f\n", x, y);
     }
     
-    printf("\nAnswer: y(1.0) = %.4f\n", y);
+    printf("\nAnswer: y(1.0) = %.3f\n", y);
     return 0;
 }
