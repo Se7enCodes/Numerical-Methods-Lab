@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <math.h>
+
+double f(double x) {
+    return x*x*x - x - 2;
+}
+
+void regulaFalsi(double a, double b, double tol) {
+    if (f(a) * f(b) >= 0) {
+        printf("Invalid interval\n");
+        return;
+    }
+
+    double c;
+    int step = 1;
+
+    printf("Step\ta\tb\tc\tf(c)\n");
+
+    while (fabs(f(c)) > tol) {
+        c = (a*f(b) - b*f(a)) / (f(b) - f(a));
+
+        printf("%d\t%.4f\t%.4f\t%.4f\t%.4f\n", step++, a, b, c, f(c));
+
+        if (f(c) == 0.0)
+            break;
+        else if (f(a) * f(c) < 0)
+            b = c;
+        else
+            a = c;
+    }
+
+    printf("\nRoot = %.6f\n", c);
+}
+
+int main() {
+    regulaFalsi(1, 2, 0.0001);
+    return 0;
+}
