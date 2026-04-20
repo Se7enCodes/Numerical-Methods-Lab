@@ -1,0 +1,47 @@
+/*
+Euler Method
+dy/dx = x + y, y(0) = 1, h = 0.2, find y(0.4)
+*/
+
+#include <stdio.h>
+
+/* Differential equation: dy/dx = x + y */
+double f(double x, double y) {
+    return x + y;
+}
+
+/* Euler Method */
+double euler(double x0, double y0, double h, double xtgt) {
+    double x = x0;
+    double y = y0;
+    int steps = (int)((xtgt - x0) / h);
+
+    printf("Step\tx\ty\t\tslope\n");
+    printf("---------------------------------\n");
+    printf("%d\t%.1f\t%.6f\n", 0, x, y);
+
+    for (int i = 0; i < steps; i++) {
+        double slope = f(x, y);
+
+        y = y + h * slope;
+        x = x + h;
+
+        printf("%d\t%.1f\t%.6f\t%.6f\n", i + 1, x, y, slope);
+    }
+
+    return y;
+}
+
+int main() {
+    double x0 = 0.0;
+    double y0 = 1.0;
+    double h = 0.2;
+    double xtgt = 0.4;
+
+    double result = euler(x0, y0, h, xtgt);
+
+    printf("\nEuler Method Result:\n");
+    printf("y(0.4) = %.6f\n", result);
+
+    return 0;
+}
