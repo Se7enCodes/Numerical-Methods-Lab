@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <math.h>
+
+double f(double x) {
+    return x*x*x - x - 2;
+}
+
+double df(double x) {
+    return 3*x*x - 1;
+}
+
+void newtonRaphson(double x0, double tol) {
+    double x1;
+    int step = 1;
+
+    printf("Step\tx0\tx1\tf(x1)\n");
+
+    do {
+        x1 = x0 - f(x0) / df(x0);
+
+        printf("%d\t%.4f\t%.4f\t%.4f\n", step++, x0, x1, f(x1));
+
+        x0 = x1;
+
+    } while (fabs(f(x1)) > tol);
+
+    printf("\nRoot = %.6f\n", x1);
+}
+
+int main() {
+    newtonRaphson(1, 0.0001);
+    return 0;
+}
